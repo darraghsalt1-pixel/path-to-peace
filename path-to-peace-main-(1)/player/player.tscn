@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://01slwr4rnigs"]
+
+[ext_resource type="Script" uid="uid://5k276lilsq4w" path="res://player/player.gd" id="1_rgyib"]
+[ext_resource type="Texture2D" uid="uid://b1rj3oj31hh87" path="res://a_injured_combat_medic_who_is_injured_in_his_head/animations/walk/east/frame_000.png" id="2_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://ba5t7djn1lat3" path="res://a_injured_combat_medic_who_is_injured_in_his_head/animations/walk/east/frame_001.png" id="3_8t03j"]
+[ext_resource type="Texture2D" uid="uid://cgo47ya0op8le" path="res://a_injured_combat_medic_who_is_injured_in_his_head/animations/walk/east/frame_002.png" id="4_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://bxl0guj7wwc5c" path="res://a_injured_combat_medic_who_is_injured_in_his_head/animations/walk/east/frame_003.png" id="5_ebec5"]
+[ext_resource type="Texture2D" uid="uid://wt124wyuu3rh" path="res://a_injured_combat_medic_who_is_injured_in_his_head/animations/walk/east/frame_004.png" id="6_yllr7"]
+[ext_resource type="Texture2D" uid="uid://c7glqlc1wixtr" path="res://a_injured_combat_medic_who_is_injured_in_his_head/animations/walk/east/frame_005.png" id="7_kb6p2"]
+[ext_resource type="Script" uid="uid://p1pudquw6t8g" path="res://player/jump_trajectory_visualizer.gd" id="8_hg6s5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_efxa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hg6s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8t03j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2ieo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ebec5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yllr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kb6p2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w48qg"]
+size = Vector2(14, 44)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_rgyib")
+deceleration = 1400.06
+air_acceleration = 480.583
+max_fall_speed = 327.67
+jump_time_to_peak = 0.25
+jump_time_to_descend = 0.25
+jump_horizontal_distance = 72.422
+jump_cancel_divider = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_efxa6")
+frame_progress = 0.02592359
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_w48qg")
+
+[node name="JumpTrajectoryVisualizer" type="Node2D" parent="."]
+script = ExtResource("8_hg6s5")
+metadata/_custom_type_script = "uid://p1pudquw6t8g"
