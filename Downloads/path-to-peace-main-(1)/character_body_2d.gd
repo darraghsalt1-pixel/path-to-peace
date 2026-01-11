@@ -1,8 +1,25 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 220.0
+const JUMP_VELOCITY = -340.0
+
+func character_info():
+	pass
+
+var spawn_position = Vector2(0, 0)
+
+func _ready():
+	spawn_position = position  # Save starting position
+
+func _process(delta):
+	if position.y > 290:
+		die()
+		
+func die():
+	$"../DeathScreen".visible = true
+	position = spawn_position  # Reset to start
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -22,8 +39,3 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-
-func _process(delta):
-	if Input.is_action_pressed("ui_up"):
-		print ("up")
-		pass
